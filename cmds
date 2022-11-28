@@ -1,0 +1,243 @@
+ 1  clear
+    2  cd .ssh/
+    3  ls
+    4  sudo apt-get update
+    5  sudo apt-get install     ca-certificates     curl     gnupg     lsb-release
+    6  sudo mkdir -p /etc/apt/keyrings
+    7  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+    8    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    9  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+   10  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+   11  echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+   12    $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   13  sudo apt-get update
+   14  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+   15  sudo docker run hello-world
+   16  docker -v
+   17  clear
+   18  sudo groupadd docker
+   19  sudo usermod -aG docker azureuser
+   20  exit
+   21  clear
+   22  cd
+   23  docker run nginx
+   24  clear
+   25  cd
+   26  ls
+   27  docker run -d -p 80:80 --name lmsweb nginx
+   28  docker ps
+   29  docker run node
+   30  docker run -d redis
+   31  docker run postgres
+   32  docker network create lmsnetwork
+   33  docker run -d -p 5432:5432 -e POSTGRES_PASSWORD=password --name lmspgdb --network lmsnetwork postgres
+   34  docker ps
+   35  docker stop awesome_hermann
+   36  docker rm awesome_hermann
+   37  docker ps
+   38  cd
+   39  git clone https://github.com/SandeepTammineedi/lms-public
+   40  ls
+   41  cd lms-public
+   42  ls
+   43  cd webapp
+   44  ls
+   45  ls -altr
+   46  vi .env
+   47  cat .env
+   48  doocker build --tag lms-web .
+   49  docker build --tag lms-web .
+   50  docker ps 
+   51  docker imeage
+   52  docker image
+   53  docker images
+   54  docker run -d -p 80:80 --network lmsnetwork --name lmsfe lms-web
+   55  docker stop lms-web
+   56  docker stop lmsweb
+   57  docker rm  lmsweb
+   58  docker ps
+   59  docker run -d -p 80:80 --network lmsnetwork --name lmsfe lms-web
+   60  docker run -d -p 80:80 --network lmsnetwork --name lmsfe lmsweb
+   61  docker run -d -p 80:80 --network lmsnetwork --name lmsfe lms-web
+   62  docker stop lmsweb
+   63  docker rm lmsfe
+   64  docker run -d -p 80:80 --network lmsnetwork --name lmsfe lms-web
+   65  docker ps
+   66  clear
+   67  cd ..
+   68  git pull
+   69  ls
+   70  cd api
+   71  ls
+   72  docker build --tag lms-public-api .
+   73  clear
+   74  docker run -p 8080:8080 --network lmsnetwork  -e DATABASE_URL=postgresql://postgres:password@lmspgdb:5432/postgres -e MODE=local -e PORT=8080 lms-public-api
+   75  clear
+   76  ls
+   77  docker images
+   78  docker ps
+   79  cd lms-public
+   80  ls
+   81  cat docker-compose.yml
+   82  lsb_release -a
+   83  apt-get update
+   84  sudo apt-get update
+   85  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+   86  docker compose up
+   87  docker images
+   88  clear
+   89  cd
+   90  ls
+   91  cd lms-public
+   92  ls
+   93  curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube_latest_amd64.deb
+   94  sudo dpkg -i minikube_latest_amd64.deb
+   95  ls
+   96  snap install kubectl --classic
+   97  sudo snap install kubectl --classic
+   98  clear
+   99  ls
+  100  minikube start --driver docker --container-runtime=containerd
+  101  ls
+  102  minikube
+  103  clear
+  104  ls
+  105  git pull
+  106  kubectl run nginx --image=nginx
+  107  ls
+  108  kubectl get pods
+  109  kubectl describe pod nginx
+  110  kubectl get pods
+  111  history
+  112  clear
+  113  kubectl get pods
+  114  kubecl apply -f nginx-deployment.yml 
+  115  kubectl apply -f nginx-deployment.yml 
+  116  kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+  117  ls
+  118  vi nginx-deployment.yml
+  119  ls
+  120  vi nginx-deployment.yml
+  121  kubectl create deployment --image=nginx nginx --dry-run=client -o yaml
+  122  vi nginx-deployment.yml
+  123  cat  nginx-deployment.yml
+  124  clear
+  125  rm  nginx-deployment.yml
+  126  ls
+  127  git pull
+  128  ls
+  129  cat nginx-deployment.yml
+  130  vi nginx-deployment.yml
+  131  clear
+  132  ls
+  133  rm nginx-deployment.yml
+  134  ls
+  135  git pull
+  136  ls
+  137  git pull
+  138  ls
+  139  vi nginx-deployment.yml
+  140  cat  nginx-deployment.yml
+  141  clear
+  142  git branch
+  143  ls
+  144  cd lms-public
+  145  git branch
+  146  apt list --upgradable
+  147  cd
+  148  ls
+  149  cd lms-public
+  150  git branch
+  151  ls
+  152  cat nginx-deployment.yml
+  153  kubectl apply -f nginx-deployment.yml 
+  154  kubectl get deployment
+  155  vi nginx-deployment.yml
+  156  kubectl apply -f nginx-deployment.yml 
+  157  kubectl get deployment
+  158  kubectl get pods
+  159  clear
+  160  ls
+  161  cd lms-public
+  162  ls
+  163  clear
+  164  cd lms-public
+  165  ls
+  166  cd
+  167  docker images
+  168  minikube status
+  169  minikube stop
+  170  minikube delete
+  171  clear
+  172  minikube start
+  173  minikube status
+  174  minikube image load lms-web
+  175  minikube image ls
+  176  kubectl run lms-web --image=lms-web --port=80 --image-pull-policy=Never
+  177  k8s get pods
+  178  kubectl get pods
+  179  kubectl expose pod lms-web --type=LoadBalancel --port=80
+  180  kubectl expose pod lms-web --type=LoadBalancer --port=80
+  181  kubectl get services
+  182  kubectl services --all
+  183  minikube services --all
+  184  minikube service --all
+  185  curl http://192.168.49.2:31844
+  186  docker images
+  187  minikube image load lms-public-api 
+  188  minikube image load postgres
+  189  minikube image ls
+  190  kubectl run lms-web --image=lms-web --port=80 --image-pull-policy=Never
+  191  k8s run lms-public-api --image=lms-public-api --port=8080 --image-pull-policy=Never
+  192  kubectl run lms-public-api --image=lms-public-api --port=8080 --image-pull-policy=Never
+  193  kubectl run postgres --image=postgres --port=5432 --image-pull-policy=Never
+  194  kubectl image ls
+  195  kubectl images 
+  196  kubectl pods 
+  197  kubectl get pods 
+  198  git branch
+  199  git pull
+  200  ls
+  201  cd lms-public
+  202  git pull
+  203  git branch
+  204  git checkout kube1
+  205  git pull
+  206  ls
+  207  cd kubernetes
+  208  ls
+  209  cd ..
+  210  minikube image load lms-public-api
+  211  minikube image load postgres
+  212  minikube image ls
+  213  ls
+  214  git pull
+  215  git branch
+  216  git checkout main
+  217  git pull
+  218  ls
+  219  git clone https://github.com/SandeepTammineedi/lms-public/tree/kube2
+  220  git clone https://github.com/SandeepTammineedi/lms-public
+  221  git branch
+  222  git clone https://github.com/SandeepTammineedi/lms-public/tree/kube2
+  223  minikube dashbord
+  224  minikube dashboard
+  225  minikube stop
+  226  minikube dashboard
+  227  minikube start
+  228  minikube dashboard
+  229  minikube status
+  230  minikube images ls
+  231  minikube images
+  232  minikube image
+  233  minikube image ls
+  234  cd ..
+  235  cd..
+  236  cd ..
+  237  kubectl apply -f k8s
+  238  kubectl apply -f k8s/
+  239  kubectl get pods
+  240  kubectl get all
+  241  minikube dashdord
+  242  minikube dashboard
+  243  history
